@@ -2,10 +2,19 @@ import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { RecoilRoot } from "recoil";
 import { AlbumList } from "./album-list";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 describe("album list component tests", () => {
   it("Should have a title", () => {
-    render(<AlbumList />);
+    render(
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <AlbumList />
+        </RecoilRoot>
+      </QueryClientProvider>
+    );
     const h2 = screen.getByText("Top 100 Albums");
 
     expect(h2).toBeInTheDocument();
@@ -13,9 +22,11 @@ describe("album list component tests", () => {
 
   it("should render an album list", () => {
     render(
-      <RecoilRoot>
-        <AlbumList />
-      </RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RecoilRoot>
+          <AlbumList />
+        </RecoilRoot>
+      </QueryClientProvider>
     );
 
     const album1 = screen.getByText("chemistry");
