@@ -6,29 +6,24 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
+beforeEach(() => {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <AlbumList />
+      </RecoilRoot>
+    </QueryClientProvider>
+  );
+});
+
 describe("album list component tests", async () => {
   it("Should have a title", () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <AlbumList />
-        </RecoilRoot>
-      </QueryClientProvider>
-    );
     const h2 = screen.getByText("Top Albums");
 
     expect(h2).toBeInTheDocument();
   });
 
   it("should render an album list", async () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <AlbumList />
-        </RecoilRoot>
-      </QueryClientProvider>
-    );
-
     const album1 = await screen.findByText("chemistry");
     const album2 = await screen.findByText(
       "Mystical Magical Rhythmical Radical Ride"
