@@ -15,7 +15,7 @@ describe("album list component tests", async () => {
         </RecoilRoot>
       </QueryClientProvider>
     );
-    const h2 = screen.getByText("Top 100 Albums");
+    const h2 = screen.getByText("Top Albums");
 
     expect(h2).toBeInTheDocument();
   });
