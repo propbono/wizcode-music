@@ -32,4 +32,12 @@ describe("album list component tests", async () => {
     expect(album1).toBeInTheDocument();
     expect(album2).toBeInTheDocument();
   });
+
+  it("should display error message when fetch throws error", async () => {
+    const errorMessage = await screen.findByText(
+      "Failed to fetch albums. Please try again later."
+    );
+
+    expect(errorMessage).toBeInTheDocument();
+  });
 });
