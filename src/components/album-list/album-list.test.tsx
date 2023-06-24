@@ -1,8 +1,16 @@
 import { describe, expect, it } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { RecoilRoot } from "recoil";
+import { AlbumList } from "./album-list";
 
 describe("album list component tests", () => {
+  it("Should have a title", () => {
+    render(<AlbumList />);
+    const h2 = screen.getByText("Top 100 Ablums");
+
+    expect(h2).toBeInTheDocument();
+  });
+
   it("should render an album list", () => {
     render(
       <RecoilRoot>
