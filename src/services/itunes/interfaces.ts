@@ -25,15 +25,9 @@ export interface Label {
 export interface Entry {
   "im:name"?: Label;
   "im:image"?: IMImage[];
-  "im:itemCount"?: Label;
-  "im:price"?: IMPrice;
-  "im:contentType"?: EntryIMContentType;
-  rights?: Label;
   title?: Label;
   link?: Link;
-  id?: ID;
   "im:artist"?: IMArtist;
-  category?: Category;
   "im:releaseDate"?: IMReleaseDate;
 }
 
@@ -104,7 +98,7 @@ export interface IMPriceAttributes {
 export type Currency = "USD";
 
 export interface IMReleaseDate {
-  label?: Date;
+  label?: string;
   attributes?: Label;
 }
 
