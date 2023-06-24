@@ -4,7 +4,7 @@ export interface ItunesService {
 
 export interface Feed {
   author: Author;
-  entry: Entry[];
+  entry: Album[];
   updated: Label;
   rights: Label;
   title: Label;
@@ -22,7 +22,7 @@ export interface Label {
   label?: string;
 }
 
-export interface Entry {
+export interface Album {
   "im:name"?: Label;
   "im:image"?: IMImage[];
   title?: Label;
