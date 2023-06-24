@@ -16,5 +16,14 @@ export const AlbumList: React.FC = () => {
     if (albums) setAlbumList(albums);
   }, [albums, setAlbumList]);
 
-  return <h2>Top 100 Albums</h2>;
+  return (
+    <>
+      <h2>Top 100 Albums</h2>
+      <ul>
+        {albumList.map((album, index) => (
+          <li key={album.title?.label}>{album["im:name"]?.label}</li>
+        ))}
+      </ul>
+    </>
+  );
 };

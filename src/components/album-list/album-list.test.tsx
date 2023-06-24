@@ -34,7 +34,7 @@ describe("album list component tests", async () => {
       "Mystical Magical Rhythmical Radical Ride"
     );
 
-    expect(album1).toBeInDocument();
-    expect(album2).toBeInDocument();
+    expect(album1).toBeInTheDocument();
+    expect(album2).toBeInTheDocument();
   });
 });
