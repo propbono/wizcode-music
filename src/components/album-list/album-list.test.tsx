@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 const queryClient = new QueryClient();
 
-describe("album list component tests", () => {
+describe("album list component tests", async () => {
   it("Should have a title", () => {
     render(
       <QueryClientProvider client={queryClient}>
@@ -20,7 +20,7 @@ describe("album list component tests", () => {
     expect(h2).toBeInTheDocument();
   });
 
-  it("should render an album list", () => {
+  it("should render an album list", async () => {
     render(
       <QueryClientProvider client={queryClient}>
         <RecoilRoot>
@@ -29,8 +29,10 @@ describe("album list component tests", () => {
       </QueryClientProvider>
     );
 
-    const album1 = screen.getByText("chemistry");
-    const album2 = screen.getByText("Mystical Magical Rhythmical Radical Ride");
+    const album1 = await screen.findByText("chemistry");
+    const album2 = await screen.findByText(
+      "Mystical Magical Rhythmical Radical Ride"
+    );
 
     expect(album1).toBeInDocument();
     expect(album2).toBeInDocument();
