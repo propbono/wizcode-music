@@ -6,7 +6,7 @@ import { AlbumList } from "./album-list";
 describe("album list component tests", () => {
   it("Should have a title", () => {
     render(<AlbumList />);
-    const h2 = screen.getByText("Top 100 Ablums");
+    const h2 = screen.getByText("Top 100 Albums");
 
     expect(h2).toBeInTheDocument();
   });

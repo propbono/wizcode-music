@@ -1,3 +1,3 @@
 export const AlbumList: React.FC = () => {
-  return <>"AlbumList";</>;
+  return <h2>Top 100 Albums</h2>;
 };
