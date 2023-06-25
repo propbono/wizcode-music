@@ -20,15 +20,19 @@ afterEach(() => {
   queryCache.clear();
 });
 
+const renderAlbumList = () => {
+  render(
+    <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
+        <AlbumList />
+      </RecoilRoot>
+    </QueryClientProvider>
+  );
+};
+
 describe("album list component tests", async () => {
   it("should have a title", () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <AlbumList />
-        </RecoilRoot>
-      </QueryClientProvider>
-    );
+    renderAlbumList();
 
     const h2 = screen.getByText("Top Albums");
 
@@ -36,13 +40,7 @@ describe("album list component tests", async () => {
   });
 
   it("should render an album list", async () => {
-    render(
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <AlbumList />
-        </RecoilRoot>
-      </QueryClientProvider>
-    );
+    renderAlbumList();
 
     const album1 = await screen.findByText("chemistry");
 
@@ -61,13 +59,7 @@ describe("album list component tests", async () => {
       })
     );
 
-    render(
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
-          <AlbumList />
-        </RecoilRoot>
-      </QueryClientProvider>
-    );
+    renderAlbumList();
 
     const errorMessage = await screen.findByText(
       "Failed to fetch albums. Please try again later."
