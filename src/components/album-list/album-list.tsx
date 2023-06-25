@@ -1,24 +1,14 @@
-import { atom, useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { useAlbums } from "../../services/itunes/use-albums";
 import { useEffect } from "react";
 import { Section } from "../layout/section";
 import { Container } from "../layout/container";
-import { Album } from "../../services/itunes/interfaces";
-
-export const albumListState = atom<Array<Album>>({
-  key: "albumListState",
-  default: [],
-});
-
-export const searchQueryState = atom<string>({
-  key: "searchState",
-  default: "",
-});
+import { albumListState, searchQueryState } from "../../recoil/album-atom";
 
 export const AlbumList: React.FC = () => {
   const [albumList, setAlbumList] = useRecoilState(albumListState);
   const [query, setQuery] = useRecoilState(searchQueryState);
-  const { data: albums, error } = useAlbums();
+  const { data: albums, isError } = useAlbums();
 
   useEffect(() => {
     if (albums) {
@@ -30,7 +20,7 @@ export const AlbumList: React.FC = () => {
     album["im:name"]?.label?.toLowerCase().includes(query.toLowerCase())
   );
 
-  if (error) {
+  if (isError) {
     return <div>Failed to fetch albums. Please try again later.</div>;
   }
 
