@@ -10,20 +10,29 @@ export const albumListState = atom<Array<Album>>({
 
 export const AlbumList: React.FC = () => {
   const [albumList, setAlbumList] = useRecoilState(albumListState);
+
   const { data: albums, error } = useAlbums();
 
   useEffect(() => {
-    if (albums) setAlbumList(albums);
+    if (albums) {
+      setAlbumList(albums);
+    }
   }, [albums, setAlbumList]);
+
+  if (error) {
+    return <div>Failed to fetch albums. Please try again later.</div>;
+  }
 
   return (
     <>
       <h2>Top Albums</h2>
-      <ul>
-        {albumList.map((album, index) => (
-          <li key={album.title?.label}>{album["im:name"]?.label}</li>
+      <ol className="pure-grid-*">
+        {albumList.map((album) => (
+          <li key={album.title?.label}>
+            <span>{album["im:name"]?.label}</span>
+          </li>
         ))}
-      </ul>
+      </ol>
     </>
   );
 };
