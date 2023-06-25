@@ -67,4 +67,23 @@ describe("album list component tests", async () => {
 
     expect(errorMessage).toBeInTheDocument();
   });
+
+  it("should render an album list with album and artist name", async () => {
+    renderAlbumList();
+
+    const album1 = await screen.findByText("chemistry");
+
+    const album2 = await screen.findByText(
+      "Mystical Magical Rhythmical Radical Ride"
+    );
+
+    const artist1 = await screen.findByText("Kelly Clarkson");
+    const artist2 = await screen.findByText("Jason Mraz");
+
+    expect(album1).toBeInTheDocument();
+    expect(album2).toBeInTheDocument();
+
+    expect(artist1).toBeInTheDocument();
+    expect(artist2).toBeInTheDocument();
+  });
 });

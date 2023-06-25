@@ -29,7 +29,9 @@ export const AlbumList: React.FC = () => {
       <ol className="pure-grid-*">
         {albumList.map((album) => (
           <li key={album.title?.label}>
+            <img src={album["im:image"]?.[0].label} />
             <span>{album["im:name"]?.label}</span>
+            <span>{album["im:artist"]?.label}</span>
           </li>
         ))}
       </ol>
