@@ -2,6 +2,8 @@ import { atom, useRecoilState } from "recoil";
 import { Album } from "../../services/itunes/interfaces";
 import { useAlbums } from "../../services/itunes/use-albums";
 import { useEffect } from "react";
+import { Section } from "../layout/section";
+import { Container } from "../layout/container";
 
 export const albumListState = atom<Array<Album>>({
   key: "albumListState",
@@ -24,17 +26,19 @@ export const AlbumList: React.FC = () => {
   }
 
   return (
-    <>
-      <h2>Top Albums</h2>
-      <ol className="pure-grid-*">
-        {albumList.map((album) => (
-          <li key={album.title?.label}>
-            <img src={album["im:image"]?.[0].label} />
-            <span>{album["im:name"]?.label}</span>
-            <span>{album["im:artist"]?.label}</span>
-          </li>
-        ))}
-      </ol>
-    </>
+    <Section>
+      <Container>
+        <h2>Top Albums</h2>
+        <ol className="">
+          {albumList.map((album) => (
+            <li key={album.title?.label}>
+              <img src={album["im:image"]?.[0].label} />
+              <span>{album["im:name"]?.label}</span>
+              <span>{album["im:artist"]?.label}</span>
+            </li>
+          ))}
+        </ol>
+      </Container>
+    </Section>
   );
 };
