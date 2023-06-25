@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { RecoilRoot } from "recoil";
 import { AlbumList } from "./album-list";
 import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
@@ -85,5 +85,22 @@ describe("album list component tests", async () => {
 
     expect(artist1).toBeInTheDocument();
     expect(artist2).toBeInTheDocument();
+  });
+
+  it("should filter album list based on search input", async () => {
+    renderAlbumList();
+    const searchInput = screen.getByPlaceholderText("Search Albums");
+    fireEvent.change(searchInput, {
+      target: { value: "Fearless (Taylor's Version)" },
+    });
+
+    const album = await screen.findByText("Fearless (Taylor's Version)");
+    const albumList = await screen.findByRole("list");
+
+    const { getAllByRole } = within(albumList);
+    const items = getAllByRole("listitem");
+
+    expect(album).toBeInTheDocument();
+    expect(items.length).toBe(1);
   });
 });
