@@ -38,7 +38,7 @@ export const AlbumList: React.FC = () => {
               className="flex flex-col w-full h-auto bg-slate-800 text-slate-50 rounded-lg shadow-md"
             >
               <img
-                src={album["im:image"]?.[0].label}
+                src={album["im:image"]?.[2].label}
                 className="rounded-t-lg w-full h-auto aspect-video object-cover"
               />
               <span className="text-2xl font-bold md:text-3xl p-2 md:truncate md:hover:whitespace-normal md:hover:cursor-pointer">
