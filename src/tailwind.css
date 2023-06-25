@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.counter-reset {
+  counter-reset: list-number 0;
+}
+
+.counter-reset li::before {
+  counter-increment: list-number;
+  content: counter(list-number);
+  @apply shadow-md absolute w-12 h-12 inline-flex align-middle justify-center text-4xl bg-emerald-500 text-slate-50 rounded-br-lg font-medium transition-colors duration-1000 delay-100 hover:text-emerald-500 hover:bg-slate-50;
+}
